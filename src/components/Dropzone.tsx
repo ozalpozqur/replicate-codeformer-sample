@@ -52,6 +52,13 @@ export default function MyDropzone({ className }: { className?: string }) {
       body: JSON.stringify({ id }),
     });
 
+    if (!res.ok) {
+      return {
+        outputImage: null,
+        error: "Something went wrong, please try again",
+      };
+    }
+
     return (await res.json()) as {
       outputImage: string | null;
       error: string | null;
