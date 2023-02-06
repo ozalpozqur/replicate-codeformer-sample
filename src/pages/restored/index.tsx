@@ -8,7 +8,6 @@ export default function Restored() {
   const router = useRouter();
 
   useEffect(() => {
-    console.log(originalImage);
     if (!originalImage) router.push("/");
   }, []);
 
