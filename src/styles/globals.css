@@ -9,6 +9,7 @@
     #__next {
         display: flex;
         flex-direction: column;
+        @apply pb-header;
     }
 }
 

@@ -59,7 +59,7 @@ export default function MyDropzone({ className }: { className?: string }) {
 
   return (
     <Dropzone
-      accept={{ "image/*": [] }}
+      accept={{ "image/jpeg": [], "image/png": [], "image/jpg": [] }}
       onDropAccepted={onDrop}
       multiple={false}
     >
@@ -83,6 +83,9 @@ export default function MyDropzone({ className }: { className?: string }) {
                 </span>
                 <p className="text-gray-500 group-hover:text-gray-700">
                   Or drag and drop an image
+                </p>
+                <p className="text-gray-500 text-xs">
+                  Supported formats <strong>.jpg, .jpeg, .png</strong>
                 </p>
               </>
             )}

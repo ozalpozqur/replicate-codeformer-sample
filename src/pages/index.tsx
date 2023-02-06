@@ -14,24 +14,20 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <main className="container mx-auto px-4 flex flex-col gap-12 h-full pb-20">
-        <header className="h-header border-b flex items-center">
-          <img className="h-10" src="/svg/logo_light.svg" alt="App Logo" />
-        </header>
-        <div className=" mx-auto flex flex-col items-center gap-10">
-          <div>
-            <h1 className="text-5xl lg:text-6xl text-center font-bold">
-              Restore any face photo
-            </h1>
-          </div>
+      <div className="flex flex-col gap-12 h-full pb-20">
+        <div>
+          <h1 className="text-5xl lg:text-6xl text-center font-bold">
+            Restore any face photo
+          </h1>
+        </div>
+        <div className="flex flex-col items-center gap-10">
           {originalImage ? (
             <ShowPictures />
           ) : (
-            <MyDropzone className="w-full max-w-4xl h-56" />
+            <MyDropzone className="w-full max-w-lg h-56" />
           )}
         </div>
-      </main>
+      </div>
     </>
   );
 }
