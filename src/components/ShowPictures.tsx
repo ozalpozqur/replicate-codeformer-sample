@@ -26,7 +26,7 @@ export default function ShowPictures() {
             Original Image
           </h2>
           <img
-            className="rounded-2xl w-full h-auto"
+            className="rounded-2xl w-full h-auto max-h-[90vh]"
             src={originalImage!}
             alt="Original Image"
           />
@@ -41,7 +41,7 @@ export default function ShowPictures() {
             </div>
           ) : (
             <img
-              className="rounded-2xl w-full h-auto"
+              className="rounded-2xl w-full h-auto max-h-[90vh]"
               src={processedImage!}
               alt="Processed Image"
             />
