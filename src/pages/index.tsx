@@ -14,10 +14,10 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="flex flex-col gap-12 h-full pb-20">
+      <div className="flex flex-col gap-6 md:gap-12 h-full pb-20">
         <div>
-          <h1 className="text-5xl lg:text-6xl text-center font-bold">
-            Restore any face photo
+          <h1 className="animate-text text-center text-4xl md:text-6xl bg-gradient-to-r from-teal-500 via-purple-500 to-orange-500 bg-clip-text text-transparent text-5xl font-black">
+            Restore any photo
           </h1>
         </div>
         <div className="flex flex-col items-center gap-10">
