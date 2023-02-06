@@ -1,10 +1,16 @@
 import Head from "next/head";
 import MyDropzone from "@/components/Dropzone";
 import { useStore } from "@/store";
-import ShowPictures from "@/components/ShowPictures";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 export default function Home() {
   const { originalImage } = useStore();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (originalImage) router.push("/restored");
+  }, [originalImage]);
 
   return (
     <>
@@ -21,11 +27,7 @@ export default function Home() {
           </h1>
         </div>
         <div className="flex flex-col items-center gap-10">
-          {originalImage ? (
-            <ShowPictures />
-          ) : (
-            <MyDropzone className="w-full max-w-lg h-56" />
-          )}
+          <MyDropzone className="w-full max-w-lg h-56" />
         </div>
       </div>
     </>

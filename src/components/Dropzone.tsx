@@ -4,6 +4,7 @@ import { Prediction } from "@/types";
 import { cn } from "@/helpers";
 import Loading from "@/components/Loading";
 import { useStore } from "@/store";
+import { toast } from "react-toastify";
 
 export default function MyDropzone({ className }: { className?: string }) {
   const {
@@ -18,12 +19,26 @@ export default function MyDropzone({ className }: { className?: string }) {
     if (acceptedFiles.length === 0) return;
 
     setUploading(true);
-    const { id, input } = await upload(acceptedFiles);
-    setOriginalImage(input.image);
+    const { data, errors } = await upload(acceptedFiles);
+
+    if (errors) {
+      toast.error("Something went wrong, please try again");
+      setUploading(false);
+      return;
+    }
+
+    setOriginalImage(data.input.image);
     setUploading(false);
 
     setProcessing(true);
-    const { outputImage } = await getGeneratedImage(id);
+    const { outputImage, error } = await getGeneratedImage(data.id);
+
+    if (error) {
+      toast.error(error);
+      setProcessing(false);
+      return;
+    }
+
     setProcessedImage(outputImage);
     setProcessing(false);
   }
@@ -47,15 +62,13 @@ export default function MyDropzone({ className }: { className?: string }) {
     const formData = new FormData();
     formData.append("image", file);
 
-    let { data } = await altogic.endpoint.post("/prediction", formData);
+    let { data, errors } = await altogic.endpoint.post("/prediction", formData);
 
-    return data as Prediction;
+    return {
+      data: data as Prediction,
+      errors,
+    };
   }
-
-  const Status = () => {
-    if (uploading) return <Loading />;
-    return null;
-  };
 
   return (
     <Dropzone

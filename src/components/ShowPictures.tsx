@@ -1,8 +1,10 @@
 import { useStore } from "@/store";
 import Loading from "@/components/Loading";
+import { useRouter } from "next/router";
 
 export default function ShowPictures() {
   const { originalImage, processedImage, processing, reset } = useStore();
+  const router = useRouter();
 
   function download() {
     if (!processedImage) return;
@@ -18,9 +20,14 @@ export default function ShowPictures() {
       });
   }
 
+  function resetHandler() {
+    reset();
+    router.push("/");
+  }
+
   return (
     <div className="flex flex-col gap-10 items-center">
-      <div className="grid lg:grid-cols-2 gap-10">
+      <div className="grid md:grid-cols-2 gap-10">
         <div>
           <h2 className="text-2xl font-bold text-center mb-2">
             Original Image
@@ -53,7 +60,7 @@ export default function ShowPictures() {
           <>
             <button
               className="border px-4 py-2 shadow rounded-lg bg-indigo-600 transition hover:bg-indigo-700 text-white"
-              onClick={reset}
+              onClick={resetHandler}
             >
               Reset and try again
             </button>
