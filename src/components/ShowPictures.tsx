@@ -1,13 +1,16 @@
 import { useStore } from "@/store";
 import Loading from "@/components/Loading";
 import { useRouter } from "next/router";
+import { useState } from "react";
 
 export default function ShowPictures() {
   const { originalImage, processedImage, processing, reset } = useStore();
+  const [downloading, setDownloading] = useState(false);
   const router = useRouter();
 
   function download() {
-    if (!processedImage) return;
+    if (!processedImage || downloading) return;
+    setDownloading(true);
     fetch(processedImage)
       .then((res) => res.blob())
       .then((blob) => {
@@ -17,6 +20,7 @@ export default function ShowPictures() {
         link.download = "processed-image.png";
         link.click();
         URL.revokeObjectURL(url);
+        setDownloading(false);
       });
   }
 
@@ -65,10 +69,11 @@ export default function ShowPictures() {
               Reset and try again
             </button>
             <button
+              disabled={downloading}
               onClick={download}
               className="border px-4 py-2 shadow rounded-lg bg-green-600 transition hover:bg-green-700 text-white"
             >
-              Download Image
+              {downloading ? "Downloading..." : "Download Image"}
             </button>
           </>
         )}
