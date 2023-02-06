@@ -28,17 +28,17 @@ export default function ShowPictures() {
   return (
     <div className="flex flex-col gap-10 items-center">
       <div className="grid md:grid-cols-2 gap-10">
-        <div>
+        <div className="w-full">
           <h2 className="text-2xl font-bold text-center mb-2">
             Original Image
           </h2>
           <img
-            className="rounded-2xl w-full h-auto max-h-[90vh]"
+            className="rounded-2xl w-full h-auto max-h-[90vh] drop-shadow"
             src={originalImage!}
             alt="Original Image"
           />
         </div>
-        <div>
+        <div className="w-full">
           <h2 className="text-2xl font-bold text-center mb-2">
             Processed Image
           </h2>
@@ -48,7 +48,7 @@ export default function ShowPictures() {
             </div>
           ) : (
             <img
-              className="rounded-2xl w-full h-auto max-h-[90vh]"
+              className="rounded-2xl w-full h-auto max-h-[90vh] drop-shadow"
               src={processedImage!}
               alt="Processed Image"
             />
