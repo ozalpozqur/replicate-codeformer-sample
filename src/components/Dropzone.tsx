@@ -69,7 +69,14 @@ export default function MyDropzone({ className }: { className?: string }) {
     const formData = new FormData();
     formData.append("image", file);
 
-    let { data, errors } = await altogic.endpoint.post("/prediction", formData);
+    let { data, errors } = await altogic.endpoint.post(
+      "/prediction",
+      formData,
+      {
+        version:
+          "7de2ea26c616d5bf2245ad0d5e24f0ff9a6204578a5c876db53142edd9d2cd56",
+      }
+    );
 
     return {
       data: data as Prediction,
